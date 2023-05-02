@@ -4,7 +4,7 @@ export default function Home() {
   return (
     <>
       <Head>
-        <title>Lizzie's Develog</title>
+        <title>Lizzie&apos;s Develog</title>
         <meta
           name="description"
           content="응애 애기개발자 Lizzie의 개발 이것저것 블로그"
@@ -13,7 +13,7 @@ export default function Home() {
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <main>
-        <h1>Lizzie's Develog</h1>
+        <h1>Lizzie&apos;s Develog</h1>
       </main>
     </>
   );
