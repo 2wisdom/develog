@@ -3,7 +3,6 @@ import AppBar from "@mui/material/AppBar";
 import Box from "@mui/material/Box";
 import Toolbar from "@mui/material/Toolbar";
 import Typography from "@mui/material/Typography";
-import Button from "@mui/material/Button";
 import IconButton from "@mui/material/IconButton";
 import MenuIcon from "@mui/icons-material/Menu";
 import {
@@ -19,7 +18,6 @@ import GitHubIcon from "@mui/icons-material/GitHub";
 import EmailIcon from "@mui/icons-material/Email";
 import HomeIcon from "@mui/icons-material/Home";
 import HandymanIcon from "@mui/icons-material/Handyman";
-import ScienceIcon from "@mui/icons-material/Science";
 import CameraAltIcon from "@mui/icons-material/CameraAlt";
 import { useRouter } from "next/router";
 
@@ -59,12 +57,7 @@ export default function ButtonAppBar() {
       href: "/",
     },
     {
-      text: "실험실",
-      icon: <ScienceIcon />,
-      href: "/",
-    },
-    {
-      text: "일상",
+      text: "일상 이것저것",
       icon: <CameraAltIcon />,
       href: "/",
     },
