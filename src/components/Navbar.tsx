@@ -55,12 +55,12 @@ export default function ButtonAppBar() {
     {
       text: "뚝딱뚝딱 개발일기",
       icon: <HandymanIcon />,
-      href: "/",
+      href: "/posts/develop",
     },
     {
       text: "일상 이것저것",
       icon: <CameraAltIcon />,
-      href: "/",
+      href: "/posts/daily",
     },
   ];
 
