@@ -42,7 +42,7 @@ export default function Home() {
             className="profile-image"
             src="/index-profile.jpeg"
             alt="profile"
-            width={300}
+            width={280}
             height={280}
           />
           <Typography variant="h2">재밌어보이는건 다하는 응애개발자</Typography>
