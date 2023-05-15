@@ -17,16 +17,23 @@ import Divider from "@mui/material/Divider";
 import Drawer from "@mui/material/Drawer";
 import GitHubIcon from "@mui/icons-material/GitHub";
 import EmailIcon from "@mui/icons-material/Email";
+import HomeIcon from "@mui/icons-material/Home";
+import HandymanIcon from "@mui/icons-material/Handyman";
+import ScienceIcon from "@mui/icons-material/Science";
+import CameraAltIcon from "@mui/icons-material/CameraAlt";
+import { useRouter } from "next/router";
 
 type Anchor = "left";
 
 type Menu = {
   text: string;
-  icon: string | JSX.Element;
+  icon: JSX.Element;
   href: string;
 };
 
 export default function ButtonAppBar() {
+  const router = useRouter();
+
   const [state, setState] = React.useState({
     left: false,
   });
@@ -47,18 +54,18 @@ export default function ButtonAppBar() {
 
   const menuItems: Menu[] = [
     {
-      text: "뚝딱뚝딱 만들어보기",
-      icon: "🛠️",
+      text: "뚝딱뚝딱 개발일기",
+      icon: <HandymanIcon />,
       href: "/",
     },
     {
       text: "실험실",
-      icon: "🧪",
+      icon: <ScienceIcon />,
       href: "/",
     },
     {
       text: "일상",
-      icon: "👣",
+      icon: <CameraAltIcon />,
       href: "/",
     },
   ];
@@ -83,6 +90,17 @@ export default function ButtonAppBar() {
       onClick={toggleDrawer(anchor, false)}
       onKeyDown={toggleDrawer(anchor, false)}
     >
+      <List>
+        <ListItem>
+          <ListItemButton href="/">
+            <ListItemIcon>
+              <HomeIcon />
+            </ListItemIcon>
+            <ListItemText primary="Home" />
+          </ListItemButton>
+        </ListItem>
+      </List>
+      <Divider />
       <List>
         {menuItems.map((item, index) => (
           <ListItem key={index} disablePadding>
@@ -122,8 +140,18 @@ export default function ButtonAppBar() {
             >
               <MenuIcon />
             </IconButton>
-            <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
-              Lizzie&apos;s Develog
+            <Typography
+              variant="h6"
+              component="div"
+              sx={{ flexGrow: 1 }}
+              style={{ cursor: "pointer", textAlign: "center" }}
+              onClick={() => {
+                router.push({
+                  pathname: "/",
+                });
+              }}
+            >
+              ✨ Lizzie&apos;s Develog ✨
             </Typography>
           </Toolbar>
         </AppBar>
