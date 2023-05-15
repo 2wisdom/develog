@@ -2,6 +2,7 @@ import Head from "next/head";
 import Image from "next/image";
 import styled from "@emotion/styled";
 import { Typography } from "@mui/material";
+import { doHyeon } from "../styles/theme";
 
 const Wrapper = styled.div`
   padding: 20px;
@@ -45,7 +46,12 @@ export default function Home() {
             width={280}
             height={280}
           />
-          <Typography variant="h2">재밌어보이는건 다하는 응애개발자</Typography>
+          <Typography
+            variant="h2"
+            style={{ fontFamily: doHyeon.style.fontFamily }}
+          >
+            재밌어보이는건 다하는 응애개발자
+          </Typography>
           <Typography variant="h5">
             개발이랑&nbsp;
             <span style={{ color: "#d0d7de" }}>

@@ -1,9 +1,16 @@
-import { Roboto } from "next/font/google";
+import { Gothic_A1, Do_Hyeon } from "next/font/google";
 import { createTheme } from "@mui/material/styles";
 import { red, indigo } from "@mui/material/colors";
 
-export const roboto = Roboto({
-  weight: ["300", "400", "500", "700"],
+export const gothicA1 = Gothic_A1({
+  weight: ["300", "400", "700"],
+  subsets: ["latin"],
+  display: "swap",
+  fallback: ["Helvetica", "Arial", "sans-serif"],
+});
+
+export const doHyeon = Do_Hyeon({
+  weight: ["400"],
   subsets: ["latin"],
   display: "swap",
   fallback: ["Helvetica", "Arial", "sans-serif"],
@@ -23,7 +30,7 @@ const theme = createTheme({
     },
   },
   typography: {
-    fontFamily: roboto.style.fontFamily,
+    fontFamily: gothicA1.style.fontFamily,
   },
 });
 

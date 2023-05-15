@@ -20,6 +20,7 @@ import HomeIcon from "@mui/icons-material/Home";
 import HandymanIcon from "@mui/icons-material/Handyman";
 import CameraAltIcon from "@mui/icons-material/CameraAlt";
 import { useRouter } from "next/router";
+import { doHyeon } from "@/styles/theme";
 
 type Anchor = "left";
 
@@ -134,10 +135,14 @@ export default function ButtonAppBar() {
               <MenuIcon />
             </IconButton>
             <Typography
-              variant="h6"
+              variant="h5"
               component="div"
               sx={{ flexGrow: 1 }}
-              style={{ cursor: "pointer", textAlign: "center" }}
+              style={{
+                cursor: "pointer",
+                textAlign: "center",
+                fontFamily: doHyeon.style.fontFamily,
+              }}
               onClick={() => {
                 router.push({
                   pathname: "/",
