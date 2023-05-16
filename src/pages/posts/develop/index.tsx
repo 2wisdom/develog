@@ -1,61 +1,42 @@
-import React from "react";
 import fs from "fs";
-import path from "path";
 import matter from "gray-matter";
+import Link from "next/link";
+import path from "path";
+import { postFilePaths, POSTS_PATH } from "../../../../utils/mdxUtils";
+import styled from "@emotion/styled";
 
-type Post = {
-  slug: string;
-  title: string;
-  date: string;
-  author: string;
-  // 추가적인 메타데이터 필드 추가
-};
+const Wrapper = styled.div``;
 
-type BlogProps = {
-  posts: Post[];
-};
-
-export async function getStaticProps() {
-  const files = fs.readdirSync(path.join("public", "posts", "develop")); // .mdx 파일이 위치한 폴더 경로
-  const posts = files.map((filename) => {
-    const filePath = path.join("public", "posts", "develop", filename);
-    const source = fs.readFileSync(filePath, "utf-8");
-    const { data } = matter(source);
-
-    return {
-      slug: filename.replace(".mdx", ""),
-      title: data.title,
-      date: new Date(data.date).toISOString(),
-      author: data.author,
-      // 추가적인 메타데이터 필드 추가
-    };
-  });
-
-  return {
-    props: {
-      posts,
-    },
-  };
-}
-
-export default function DevelopPosts({ posts }: BlogProps) {
+export default function Index({ posts }: any) {
   return (
-    <div>
-      <h1>Develop Posts</h1>
+    <Wrapper>
       <ul>
-        {posts.map((post) => (
-          <li key={post.slug}>
-            <a
-              onClick={() => {
-                console.log("slug", post);
-              }}
-              href={`/posts/develop/${post.slug}`}
+        {posts.map((post: any) => (
+          <li key={post.filePath}>
+            <Link
+              as={`/posts/develop/${post.filePath.replace(/\.mdx?$/, "")}`}
+              href={`/posts/develop/[slug]`}
             >
-              {post.title}
-            </a>
+              {post.data.title}
+            </Link>
           </li>
         ))}
       </ul>
-    </div>
+    </Wrapper>
   );
+}
+
+export function getStaticProps() {
+  const posts = postFilePaths.map((filePath) => {
+    const source = fs.readFileSync(path.join(POSTS_PATH, filePath));
+    const { content, data } = matter(source);
+
+    return {
+      content,
+      data,
+      filePath,
+    };
+  });
+
+  return { props: { posts } };
 }

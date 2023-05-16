@@ -1,55 +1,95 @@
 import fs from "fs";
-import path from "path";
 import matter from "gray-matter";
-import {
-  GetServerSideProps,
-  GetStaticPaths,
-  GetStaticProps,
-  GetStaticPropsContext,
-} from "next";
-import { serialize } from "next-mdx-remote/serialize";
 import { MDXRemote } from "next-mdx-remote";
+import { serialize } from "next-mdx-remote/serialize";
+import dynamic from "next/dynamic";
+import Head from "next/head";
+import Link from "next/link";
+import path from "path";
+import CustomLink from "@/components/CustomLink";
+import { postFilePaths, POSTS_PATH } from "../../../../utils/mdxUtils";
 
-interface PostPageProps {
-  source: any; // 여기에 MDXRemote에서 사용하는 타입을 지정해주어야 합니다.
+// Custom components/renderers to pass to MDX.
+// Since the MDX files aren't loaded by webpack, they have no knowledge of how
+// to handle import statements. Instead, you must include components in scope
+// here.
+const components = {
+  a: CustomLink,
+  // It also works with dynamically-imported components, which is especially
+  // useful for conditionally loading components for certain routes.
+  // See the notes in README.md for more details.
+  TestComponent: dynamic(() => import("../../../components/TestComponent")),
+  Head,
+};
+
+export default function PostPage({ source, frontMatter }: any) {
+  return (
+    <>
+      <header>
+        <nav>
+          <Link href="/" legacyBehavior>
+            <a>👈 Go back home</a>
+          </Link>
+        </nav>
+      </header>
+      <div className="post-header">
+        <h1>{frontMatter.title}</h1>
+        {frontMatter.description && (
+          <p className="description">{frontMatter.description}</p>
+        )}
+      </div>
+      <main>
+        <MDXRemote {...source} components={components} />
+      </main>
+
+      <style jsx>{`
+        .post-header h1 {
+          margin-bottom: 0;
+        }
+
+        .post-header {
+          margin-bottom: 2rem;
+        }
+        .description {
+          opacity: 0.6;
+        }
+      `}</style>
+    </>
+  );
 }
 
-export default function PostPage({ source }: PostPageProps) {
-  return <MDXRemote {...source} />;
-}
+export const getStaticProps = async ({ params }: any) => {
+  const postFilePath = path.join(POSTS_PATH, `${params.slug}.mdx`);
+  const source = fs.readFileSync(postFilePath);
 
-export const getStaticPaths: GetStaticPaths = async () => {
-  const postsDirectory = path.join(process.cwd(), "public", "posts", "develop");
-  const filenames = fs.readdirSync(postsDirectory);
+  const { content, data } = matter(source);
 
-  const paths = filenames.map((filename) => ({
-    params: { slug: filename.replace(".mdx", "") },
-  }));
+  const mdxSource = await serialize(content, {
+    // Optionally pass remark/rehype plugins
+    mdxOptions: {
+      remarkPlugins: [],
+      rehypePlugins: [],
+    },
+    scope: data,
+  });
+
+  return {
+    props: {
+      source: mdxSource,
+      frontMatter: data,
+    },
+  };
+};
+
+export const getStaticPaths = async () => {
+  const paths = postFilePaths
+    // Remove file extensions for page paths
+    .map((path) => path.replace(/\.mdx?$/, ""))
+    // Map the path into the static paths object required by Next.js
+    .map((slug) => ({ params: { slug } }));
 
   return {
     paths,
     fallback: false,
-  };
-};
-
-export const getStaticProps: GetStaticProps = async ({
-  params,
-}: GetStaticPropsContext) => {
-  const { slug } = params!;
-  const filePath = path.join(
-    process.cwd(),
-    "public",
-    "posts",
-    "develop",
-    `${slug}.mdx`
-  );
-  const fileContents = fs.readFileSync(filePath, "utf8");
-  const { content } = matter(fileContents);
-  const source = await serialize(content);
-
-  return {
-    props: {
-      source,
-    },
   };
 };
