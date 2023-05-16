@@ -21,4 +21,14 @@ const nextConfig = {
 };
 
 // Merge MDX config with Next.js config
-module.exports = withMDX(nextConfig);
+module.exports = {
+  async rewrites() {
+    withMDX(nextConfig);
+    return [
+      {
+        source: "/posts/develop/:slug", // 요청 경로
+        destination: "/posts/develop/[slug]", // 라우팅 경로
+      },
+    ];
+  },
+};
