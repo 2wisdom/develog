@@ -79,7 +79,7 @@ export default function Index({ posts }: any) {
               <CardActionArea sx={{ display: "flex" }}>
                 <CardMedia
                   sx={{ flex: 2, height: 200, textAlign: "left" }}
-                  image="https://picsum.photos/400/200"
+                  image={post.data.image}
                   title="title"
                 />
                 <CardContent sx={{ flex: 2 }}>
