@@ -37,6 +37,34 @@ const Wrapper = styled.div`
     list-style: none;
     padding: 0;
   }
+
+  @media screen and (max-width: 1024px) {
+    a {
+      width: 90%;
+    }
+
+    .post-card {
+      width: 100%;
+    }
+  }
+
+  @media screen and (max-width: 768px) {
+    .post-card {
+      height: 400px;
+    }
+
+    .post-cardactionarea {
+      display: inline-block;
+    }
+
+    .post-cardmedia {
+      height: 200px;
+    }
+
+    .post-card button div div {
+      align-items: center;
+    }
+  }
 `;
 
 export default function Index({ posts }: any) {
@@ -75,14 +103,21 @@ export default function Index({ posts }: any) {
             href={`/posts/develop/[slug]`}
             key={post.filePath}
           >
-            <Card sx={{ width: 900, height: 200, margin: 1, display: "flex" }}>
-              <CardActionArea sx={{ display: "flex" }}>
+            <Card
+              className="post-card"
+              sx={{ width: 900, height: 200, margin: 1, display: "flex" }}
+            >
+              <CardActionArea
+                className="post-cardactionarea"
+                sx={{ display: "flex" }}
+              >
                 <CardMedia
+                  className="post-cardmedia"
                   sx={{ flex: 2, height: 200, textAlign: "left" }}
                   image={post.data.image}
                   title="title"
                 />
-                <CardContent sx={{ flex: 2 }}>
+                <CardContent className="post-cardcontent" sx={{ flex: 2 }}>
                   <Typography
                     variant="h5"
                     sx={{ fontWeight: 700, marginBottom: 5 }}
