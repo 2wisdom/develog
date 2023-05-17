@@ -28,6 +28,12 @@ const Wrapper = styled.div`
     padding-left: 60px;
     padding-right: 60px;
   }
+
+  @media screen and (max-width: 480px) {
+    h3 {
+      font-size: 2.5rem;
+    }
+  }
 `;
 
 // Custom components/renderers to pass to MDX.
