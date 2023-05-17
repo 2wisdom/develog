@@ -29,9 +29,21 @@ const Wrapper = styled.div`
     padding-right: 60px;
   }
 
+  @media screen and (max-width: 768px) {
+    main {
+      padding-left: 20px;
+      padding-right: 20px;
+    }
+  }
+
   @media screen and (max-width: 480px) {
     h3 {
       font-size: 2.5rem;
+    }
+
+    main {
+      padding-left: 10px;
+      padding-right: 10px;
     }
   }
 `;
