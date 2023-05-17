@@ -30,36 +30,48 @@ const components = {
 };
 
 export default function PostPage({ source, frontMatter }: any) {
+  console.log("frontMatter", frontMatter);
   return (
-    <Wrapper>
-      <header>
-        <nav>
-          <Link href="/posts/develop" legacyBehavior>
-            <Typography
-              sx={{ paddingBottom: 2, color: "#575757", cursor: "pointer" }}
-            >
-              👈 메뉴로 돌아가기
-            </Typography>
-          </Link>
-        </nav>
-      </header>
-      <div className="post-header">
-        <Typography
-          variant="h3"
-          sx={{
-            fontFamily: doHyeon.style.fontFamily,
-            borderBottom: "1px solid #d4d4d4",
-            padding: 4,
-            marginBottom: 4,
-          }}
-        >
-          {frontMatter.title}
-        </Typography>
-      </div>
-      <main>
-        <MDXRemote {...source} components={components} />
-      </main>
-    </Wrapper>
+    <>
+      <Head>
+        <title>Lizzie&apos;s Develog | {frontMatter.title}</title>
+        <meta
+          name="description"
+          content={`뚝딱뚝딱 개발일기 🛠️ ${frontMatter.description}`}
+        />
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
+        <link rel="icon" href="/favicon.ico" />
+      </Head>
+      <Wrapper>
+        <header>
+          <nav>
+            <Link href="/posts/develop" legacyBehavior>
+              <Typography
+                sx={{ paddingBottom: 2, color: "#575757", cursor: "pointer" }}
+              >
+                👈 메뉴로 돌아가기
+              </Typography>
+            </Link>
+          </nav>
+        </header>
+        <div className="post-header">
+          <Typography
+            variant="h3"
+            sx={{
+              fontFamily: doHyeon.style.fontFamily,
+              borderBottom: "1px solid #d4d4d4",
+              padding: 4,
+              marginBottom: 4,
+            }}
+          >
+            {frontMatter.title}
+          </Typography>
+        </div>
+        <main>
+          <MDXRemote {...source} components={components} />
+        </main>
+      </Wrapper>
+    </>
   );
 }
 
