@@ -14,6 +14,14 @@ import styled from "@emotion/styled";
 
 const Wrapper = styled.div`
   padding: 20px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+
+  img {
+    width: 100%;
+    max-width: 1000px;
+  }
 `;
 
 // Custom components/renderers to pass to MDX.
