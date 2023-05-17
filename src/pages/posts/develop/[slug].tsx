@@ -23,6 +23,11 @@ const Wrapper = styled.div`
     width: 100%;
     max-width: 1000px;
   }
+
+  main {
+    padding-left: 60px;
+    padding-right: 60px;
+  }
 `;
 
 // Custom components/renderers to pass to MDX.
