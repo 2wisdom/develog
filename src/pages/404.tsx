@@ -11,6 +11,29 @@ const Wrapper = styled.div`
   align-items: center;
 
   height: 80vh;
+
+  @media screen and (max-width: 768px) {
+    flex-direction: column;
+
+    h3 {
+      padding-bottom: 10px;
+    }
+
+    h4 {
+      display: flex;
+      flex-direction: column;
+    }
+  }
+
+  @media screen and (max-width: 480px) {
+    h3 {
+      font-size: 2.7rem;
+    }
+
+    h4 {
+      font-size: 1.8rem;
+    }
+  }
 `;
 
 export default function Custom404() {
@@ -27,7 +50,8 @@ export default function Custom404() {
           404 - Page Not Found
         </Typography>
         <Typography variant="h4">
-          아무래도 존재하지 않는 페이지로 오신 것 같은데요 • • •
+          <span>아무래도 존재하지 않는 페이지로 </span>
+          <span>오신 것 같은데요 • • •</span>
         </Typography>
       </div>
     </Wrapper>
