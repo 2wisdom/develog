@@ -11,6 +11,7 @@ import { postFilePaths, POSTS_PATH } from "../../../../utils/mdxUtils";
 import { doHyeon } from "../../../styles/theme";
 import { Typography } from "@mui/material";
 import styled from "@emotion/styled";
+import Image from "next/image";
 
 const Wrapper = styled.div`
   padding: 20px;
@@ -75,6 +76,7 @@ export default function PostPage({ source, frontMatter }: any) {
             {frontMatter.title}
           </Typography>
         </div>
+        <img src={frontMatter.image} alt={frontMatter.title} />
         <main>
           <MDXRemote {...source} components={components} />
         </main>
