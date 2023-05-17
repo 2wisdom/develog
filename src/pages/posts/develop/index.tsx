@@ -40,7 +40,8 @@ const Wrapper = styled.div`
 `;
 
 export default function Index({ posts }: any) {
-  console.log("posts", posts);
+  // client 측에서 post 역순으로 정렬
+  const reversedPosts = posts.slice().reverse();
   return (
     <>
       <Head>
@@ -67,7 +68,7 @@ export default function Index({ posts }: any) {
           뚝딱뚝딱 개발일기
         </Typography>
         <Divider />
-        {posts.reverse().map((post: any) => (
+        {reversedPosts.map((post: any) => (
           <Link
             className="post-link"
             as={`/posts/develop/${post.filePath.replace(/\.mdx?$/, "")}`}
