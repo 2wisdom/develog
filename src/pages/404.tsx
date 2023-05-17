@@ -14,10 +14,7 @@ const Wrapper = styled.div`
 
   @media screen and (max-width: 768px) {
     flex-direction: column;
-
-    h3 {
-      padding-bottom: 10px;
-    }
+    padding: 10px;
 
     h4 {
       display: flex;
@@ -27,11 +24,11 @@ const Wrapper = styled.div`
 
   @media screen and (max-width: 480px) {
     h3 {
-      font-size: 2.7rem;
+      font-size: 2.5rem;
     }
 
     h4 {
-      font-size: 1.8rem;
+      font-size: 1.5rem;
     }
   }
 `;
