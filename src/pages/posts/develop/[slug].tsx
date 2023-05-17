@@ -78,6 +78,20 @@ export default function PostPage({ source, frontMatter }: any) {
         <main>
           <MDXRemote {...source} components={components} />
         </main>
+        <nav>
+          <Link href="/posts/develop" legacyBehavior>
+            <Typography
+              sx={{
+                paddingTop: 5,
+                paddingBottom: 3,
+                color: "#575757",
+                cursor: "pointer",
+              }}
+            >
+              👈 메뉴로 돌아가기
+            </Typography>
+          </Link>
+        </nav>
       </Wrapper>
     </>
   );
