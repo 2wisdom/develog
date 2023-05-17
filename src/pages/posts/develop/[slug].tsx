@@ -8,6 +8,13 @@ import Link from "next/link";
 import path from "path";
 import CustomLink from "@/components/CustomLink";
 import { postFilePaths, POSTS_PATH } from "../../../../utils/mdxUtils";
+import { doHyeon } from "../../../styles/theme";
+import { Typography } from "@mui/material";
+import styled from "@emotion/styled";
+
+const Wrapper = styled.div`
+  padding: 20px;
+`;
 
 // Custom components/renderers to pass to MDX.
 // Since the MDX files aren't loaded by webpack, they have no knowledge of how
@@ -24,37 +31,35 @@ const components = {
 
 export default function PostPage({ source, frontMatter }: any) {
   return (
-    <>
+    <Wrapper>
       <header>
         <nav>
-          <Link href="/" legacyBehavior>
-            <a>👈 Go back home</a>
+          <Link href="/posts/develop" legacyBehavior>
+            <Typography
+              sx={{ paddingBottom: 2, color: "#575757", cursor: "pointer" }}
+            >
+              👈 메뉴로 돌아가기
+            </Typography>
           </Link>
         </nav>
       </header>
       <div className="post-header">
-        <h1>{frontMatter.title}</h1>
-        {frontMatter.description && (
-          <p className="description">{frontMatter.description}</p>
-        )}
+        <Typography
+          variant="h3"
+          sx={{
+            fontFamily: doHyeon.style.fontFamily,
+            borderBottom: "1px solid #d4d4d4",
+            padding: 4,
+            marginBottom: 4,
+          }}
+        >
+          {frontMatter.title}
+        </Typography>
       </div>
       <main>
         <MDXRemote {...source} components={components} />
       </main>
-
-      <style jsx>{`
-        .post-header h1 {
-          margin-bottom: 0;
-        }
-
-        .post-header {
-          margin-bottom: 2rem;
-        }
-        .description {
-          opacity: 0.6;
-        }
-      `}</style>
-    </>
+    </Wrapper>
   );
 }
 
