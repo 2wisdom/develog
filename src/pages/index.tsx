@@ -23,6 +23,38 @@ const Wrapper = styled.div`
     transform: scale(1.05);
     transition: box-shadow 0.3s, transform 0.3s;
   }
+
+  h2 {
+    display: flex;
+    margin-bottom: 10px;
+  }
+
+  @media screen and (max-width: 768px) {
+    .profile-image {
+      width: 250px;
+      height: auto;
+    }
+
+    h2 {
+      flex-direction: column;
+      font-size: 3.3rem;
+    }
+
+    h5 {
+      font-size: 1.2rem;
+    }
+  }
+
+  @media screen and (max-width: 480px) {
+    h2 {
+      font-size: 2.8rem;
+    }
+
+    h5 {
+      display: flex;
+      flex-direction: column;
+    }
+  }
 `;
 
 export default function Home() {
@@ -48,16 +80,19 @@ export default function Home() {
           />
           <Typography
             variant="h2"
-            style={{ fontFamily: doHyeon.style.fontFamily }}
+            sx={{
+              fontFamily: doHyeon.style.fontFamily,
+            }}
           >
-            재밌어보이는건 다하는 응애개발자
+            <span>재밌어보이는건&nbsp;다하는&nbsp;</span>
+            <span>응애개발자</span>
           </Typography>
           <Typography variant="h5">
-            개발이랑&nbsp;
+            <span>개발이랑&nbsp;</span>
             <span style={{ color: "#d0d7de" }}>
               &#40;개발만하면 재미없으니까&#41;
             </span>
-            &nbsp;일상 이것저것 블로그
+            <span>&nbsp;일상 이것저것 블로그</span>
           </Typography>
         </Wrapper>
       </main>
