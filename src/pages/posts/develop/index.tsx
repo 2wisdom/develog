@@ -4,25 +4,100 @@ import Link from "next/link";
 import path from "path";
 import { postFilePaths, POSTS_PATH } from "../../../../utils/mdxUtils";
 import styled from "@emotion/styled";
+import Image from "next/image";
+import {
+  Card,
+  CardActionArea,
+  CardContent,
+  CardMedia,
+  Divider,
+  Typography,
+} from "@mui/material";
+import { doHyeon } from "../../../styles/theme";
+import Head from "next/head";
 
-const Wrapper = styled.div``;
+const Wrapper = styled.div`
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  text-align: center;
+  align-items: center;
+
+  .develop-image {
+    border-radius: 50%;
+    margin-bottom: 20px;
+  }
+
+  .post-link {
+    text-decoration: none;
+  }
+
+  ul {
+    list-style: none;
+    padding: 0;
+  }
+`;
 
 export default function Index({ posts }: any) {
+  console.log("posts", posts);
   return (
-    <Wrapper>
-      <ul>
-        {posts.map((post: any) => (
-          <li key={post.filePath}>
-            <Link
-              as={`/posts/develop/${post.filePath.replace(/\.mdx?$/, "")}`}
-              href={`/posts/develop/[slug]`}
-            >
-              {post.data.title}
-            </Link>
-          </li>
+    <>
+      <Head>
+        <title>Lizzie&apos;s Develog | 개발일기</title>
+        <meta
+          name="description"
+          content="재밌어보이는건 다하는 응애 개발자 😇 뚝딱뚝딱 개발일기 🛠️"
+        />
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
+        <link rel="icon" href="/favicon.ico" />
+      </Head>
+      <Wrapper>
+        <Image
+          className="develop-image"
+          src="/develop.jpeg"
+          alt="develop"
+          width={300}
+          height={300}
+        />
+        <Typography
+          variant="h3"
+          style={{ fontFamily: doHyeon.style.fontFamily }}
+        >
+          뚝딱뚝딱 개발일기
+        </Typography>
+        <Divider />
+        {posts.reverse().map((post: any) => (
+          <Link
+            className="post-link"
+            as={`/posts/develop/${post.filePath.replace(/\.mdx?$/, "")}`}
+            href={`/posts/develop/[slug]`}
+            key={post.filePath}
+          >
+            <Card sx={{ width: 900, height: 200, margin: 1, display: "flex" }}>
+              <CardActionArea sx={{ display: "flex" }}>
+                <CardMedia
+                  sx={{ flex: 2, height: 200, textAlign: "left" }}
+                  image="https://picsum.photos/400/200"
+                  title="title"
+                />
+                <CardContent sx={{ flex: 2 }}>
+                  <Typography
+                    variant="h5"
+                    sx={{ fontWeight: 700, marginBottom: 5 }}
+                  >
+                    {post.data.title}
+                  </Typography>
+                  <Typography variant="body1" sx={{ color: "#575757" }}>
+                    {post.data.description}
+                  </Typography>
+                </CardContent>
+              </CardActionArea>
+            </Card>
+          </Link>
         ))}
-      </ul>
-    </Wrapper>
+      </Wrapper>
+    </>
   );
 }
 
