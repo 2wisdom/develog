@@ -1,0 +1,128 @@
+---
+slug: 2
+title: 웹사이트 도메인 & 검색엔진 연결
+description: 내가 만든 블로그를 모두가 볼 수 있게 도메인에 연결하고 검색엔진에도 띄워보자!
+image: "/posts/develop/2/2title-image.png"
+---
+
+ㅎㅎ 열심히 블로그를 만들면 뭐하나 ! 검색했을 때 내가 쓴 글이 뜨지않으면 의미가 없지 않겠는가 ?
+
+그래서 도메인을 사서 연결하고, google과 naver 검색 브라우저에 내 블로그가 뜨게끔 설정을 해주기로 했다 !
+
+시작전 참고하자면, 프로젝트는 Next.js 를 통해 만들었고, 배포는 vercel, 도메인 구매는 gabia를 사용했다.
+
+<br />
+
+## 도메인 구입
+
+---
+
+도메인을 구입할 수 있는곳은 다양한데, 대표적인게 [가비아](https://www.gabia.com/)나 [aws](https://aws.amazon.com/ko/free/?trk=fa2d6ba3-df80-4d24-a453-bf30ad163af9&sc_channel=ps&ef_id=Cj0KCQjwmZejBhC_ARIsAGhCqndGpn1n34M8-4ykIV5sbRr8EmPXvPChCnaxjoskUyrlKzFNrxTGvy8aAtWFEALw_wcB:G:s&s_kwcid=AL!4422!3!563761819834!e!!g!!aws!15286221779!129400439466&all-free-tier.sort-by=item.additionalFields.SortRank&all-free-tier.sort-order=asc&awsf.Free%20Tier%20Types=*all&awsf.Free%20Tier%20Categories=*all) 이다.
+
+하지만 나는 초보니까 가비아에서 하기로 함 !
+
+가비아는 한국 사이트기도 하고 aws 는 비용관리나 개인정보 관리 잘못하면 요금폭탄맞는다는 블로그들도 많이봐서...
+
+나는 아직 인스턴스나 클라우드같은 서버에대한 지식이 부족하기때문에 가비아에서 해보기로 했다 !
+
+( 사실 이걸 하기 직전까지만해도 vercel 배포로 모든게 될 줄 알았다 😅 )
+
+![buy-domain1](/posts/develop/2/buy-domain1.png)
+
+일단 회원가입을 하고 [도메인 검색](https://domain.gabia.com/regist/regist_domain)에 들어가 내가 사고싶은 도메인을 검색해본다.
+
+나는 지금 이 블로그의 도메인을 구입할 때 이므로 `lizzie-develog.com` 을 구입했다.
+
+장바구니도있고 하는게 물건쇼핑하는것같아서 설렘 🤭
+
+![buy-domain2](/posts/develop/2/buy-domain2.png)
+
+어렵지않게 쭉쭉 결제해나가면 완료 !
+
+다음은 배포한 프로젝트와 도메인을 연결해줘야하는데,
+
+나는 [vercel](https://vercel.com/) 을 통해 배포를 했으므로 vercel 에서
+
+도메인에 연결할 프로젝트 -> Settings -> Domains 에 내가 구입한 프로젝트를 Add !
+
+![vercel-add-domain1](/posts/develop/2/vercel-add-domain1.png)
+
+처음 연결하게되면 Invaild Configration 오류가 뜨는데, DNS 설정을 해줘야하는것이다 !
+
+<br />
+
+## DNS 설정
+
+---
+
+DNS 설정은 도메인을 구입한 페이지에서 할 수 있다.
+
+가비아의경우 My가비아 -> DNS 관리툴 -> DNS 관리 -> 설정해줄 도메인 주소의 DNS 설정에 들어가면 된다.
+
+![dns-record](/posts/develop/2/dns-record.png)
+
+DNS 레코드 추가를 하게되면 타입 / 호스트 / 값/위치 / TTL 을 적을 수 있는데,
+
+아까 vercel 에 적혀있던 Type / Name / Value 를 순서대로 넣어주고
+
+TTL은...
+
+레코드 변경사항이 적용될 때까지 걸리는 시간(초)을 결정하는 DNS 레코드 값인데 보통 300이라고들 하는데 내 설정에는 600부터였다...
+
+일단 가장 적은 시간인 600으로 채워넣었다. (이런 cs적인 부분들은 차차 알아가는걸로!)
+
+![vercel-add-domain2](/posts/develop/2/vercel-add-domain2.png)
+
+설정을 마치게되면 vercel 에서 등록이 완료되게 된다! (시간이 조금 걸린다)
+
+그럼 이제 내가 구입한 도메인 [www.lizzie-develog.com](https://www.lizzie-develog.com/) 에 들어가면 내 블로그가 뜬다 히히
+
+<br />
+
+## 검색 등록
+
+---
+
+구글이나 네이버 검색에 웹페이지가 뜨게 하려면,
+
+구글은 [Google Search Console](https://search.google.com/search-console/about), 네이버는 [Naver Search Advisor](https://searchadvisor.naver.com/)에 등록을 해야한다.
+
+각각 등록하는 방법을 알아보자!
+
+<br />
+
+### [Google Search Console](https://search.google.com/search-console/about)
+
+위 링크에 들어가서 시작하기를 누르면 속성 검색/추가가 있다.
+
+![google-searchconsole1](/posts/develop/2/google-searchconsole1.png)
+
+첫번째로 속성유형을 선택해주는데, 여기에 내 도메인주소를 넣어준다.
+
+앞에 `https//` 랑 뒤에 `/` 는 모두 뺀다.
+
+![google-searchconsole2](/posts/develop/2/google-searchconsole2.png)
+
+그리고나면 DNS 레코드를 주는데, 이것도 아까 vercel 에서 등록해준것과 동일하게 넣어주면 된다.
+
+type은 TXT / 호스트는 @ / 값에 TXT 레코드를 넣어주면 된다!
+
+![google-searchconsole3](/posts/develop/2/google-searchconsole3.png)
+
+설정을 하고나면 바로 등록되는것은 아닌데, 시간이 좀 걸린다.
+
+들은바로는 산지 오래된 도메인은 며칠씩도 걸린다는데, 나는 방금 막 산 따끈따끈한 도메인이라 한 30분정도 걸린 것 같다.
+
+![google-searchconsole4](/posts/develop/2/google-searchconsole4.png)
+
+확인이 되면 짠!
+
+이 창에서 내 웹페이지의 검색 노출 수나 클릭 수 등을 알아볼 수 있는 페이지가 생성이된다!
+
+아직은 데이터를 처리하는 중이라 아무것도 없긴하지만 ... 며칠 걸린다고했으니 된다면 이부분에 대해서 다시 포스팅을 해보겠다 😊
+
+<br />
+
+### [Naver Search Advisor](https://searchadvisor.naver.com/)
+
+Comming Soooon..... 곧 연결 예정!
