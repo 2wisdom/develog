@@ -44,6 +44,17 @@ const Wrapper = styled.div`
     border-radius: 3px;
   }
 
+  main pre {
+    overflow: scroll;
+    background-color: #f4f4f4;
+    padding: 8px;
+  }
+
+  main pre code {
+    background-color: transparent;
+    color: #575757;
+  }
+
   @media screen and (max-width: 768px) {
     main {
       padding-left: 20px;
