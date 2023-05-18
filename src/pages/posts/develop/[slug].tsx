@@ -30,6 +30,7 @@ const Wrapper = styled.div`
 
   main a {
     color: #3f51b5;
+    text-decoration: none;
   }
 
   @media screen and (max-width: 768px) {
