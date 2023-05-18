@@ -58,7 +58,7 @@ export default function ButtonAppBar() {
       href: "/posts/develop",
     },
     {
-      text: "일상 이것저것 (공사중)",
+      text: "일상 이것저것",
       icon: <CameraAltIcon />,
       href: "/posts/daily",
     },
