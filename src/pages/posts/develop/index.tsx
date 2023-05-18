@@ -2,7 +2,10 @@ import fs from "fs";
 import matter from "gray-matter";
 import Link from "next/link";
 import path from "path";
-import { postFilePaths, POSTS_PATH } from "../../../../utils/mdxUtils";
+import {
+  postFilePathsDevelop,
+  POSTS_PATH_DEVELOP,
+} from "../../../../utils/mdxUtils";
 import styled from "@emotion/styled";
 import Image from "next/image";
 import {
@@ -138,8 +141,8 @@ export default function Index({ posts }: any) {
 }
 
 export function getStaticProps() {
-  const posts = postFilePaths.map((filePath) => {
-    const source = fs.readFileSync(path.join(POSTS_PATH, filePath));
+  const posts = postFilePathsDevelop.map((filePath) => {
+    const source = fs.readFileSync(path.join(POSTS_PATH_DEVELOP, filePath));
     const { content, data } = matter(source);
 
     return {

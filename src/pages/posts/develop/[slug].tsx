@@ -7,7 +7,10 @@ import Head from "next/head";
 import Link from "next/link";
 import path from "path";
 import CustomLink from "@/components/CustomLink";
-import { postFilePaths, POSTS_PATH } from "../../../../utils/mdxUtils";
+import {
+  postFilePathsDevelop,
+  POSTS_PATH_DEVELOP,
+} from "../../../../utils/mdxUtils";
 import { doHyeon } from "../../../styles/theme";
 import { Typography } from "@mui/material";
 import styled from "@emotion/styled";
@@ -149,7 +152,7 @@ export default function PostPage({ source, frontMatter }: any) {
 }
 
 export const getStaticProps = async ({ params }: any) => {
-  const postFilePath = path.join(POSTS_PATH, `${params.slug}.mdx`);
+  const postFilePath = path.join(POSTS_PATH_DEVELOP, `${params.slug}.mdx`);
   const source = fs.readFileSync(postFilePath);
 
   const { content, data } = matter(source);
@@ -172,7 +175,7 @@ export const getStaticProps = async ({ params }: any) => {
 };
 
 export const getStaticPaths = async () => {
-  const paths = postFilePaths
+  const paths = postFilePathsDevelop
     // Remove file extensions for page paths
     .map((path) => path.replace(/\.mdx?$/, ""))
     // Map the path into the static paths object required by Next.js
