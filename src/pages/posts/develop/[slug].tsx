@@ -11,7 +11,6 @@ import { postFilePaths, POSTS_PATH } from "../../../../utils/mdxUtils";
 import { doHyeon } from "../../../styles/theme";
 import { Typography } from "@mui/material";
 import styled from "@emotion/styled";
-import Image from "next/image";
 
 const Wrapper = styled.div`
   padding: 20px;
@@ -27,6 +26,10 @@ const Wrapper = styled.div`
   main {
     padding-left: 60px;
     padding-right: 60px;
+  }
+
+  main a {
+    color: #3f51b5;
   }
 
   @media screen and (max-width: 768px) {
