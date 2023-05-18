@@ -103,7 +103,7 @@ export default function Index({ posts }: any) {
           아직 포스팅 된 게시글이 없네요. <br />곧 즐거운 게시글로 찾아뵐게요!
           😉
         </Typography>
-        {/* {reversedPosts.map((post: any) => (
+        {reversedPosts.map((post: any) => (
           <Link
             className="post-link"
             as={`/posts/daily/${post.filePath.replace(/\.mdx?$/, "")}`}
@@ -138,7 +138,7 @@ export default function Index({ posts }: any) {
               </CardActionArea>
             </Card>
           </Link>
-        ))} */}
+        ))}
       </Wrapper>
     </>
   );
