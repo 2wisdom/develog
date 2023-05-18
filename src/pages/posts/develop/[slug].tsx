@@ -33,6 +33,17 @@ const Wrapper = styled.div`
     text-decoration: none;
   }
 
+  main a:hover {
+    text-decoration: underline;
+  }
+
+  main code {
+    color: #b71c1c;
+    background-color: #f4f4f4;
+    padding: 3px;
+    border-radius: 3px;
+  }
+
   @media screen and (max-width: 768px) {
     main {
       padding-left: 20px;
