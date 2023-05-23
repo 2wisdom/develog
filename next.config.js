@@ -1,4 +1,3 @@
-/** @type {import('next').NextConfig} */
 const withMDX = require("@next/mdx")({
   extension: /\.mdx?$/,
   options: {
@@ -20,6 +19,7 @@ const nextConfig = {
   reactStrictMode: true,
 };
 
+/** @type {import('next').NextConfig} */
 // Merge MDX config with Next.js config
 module.exports = {
   async rewrites() {
