@@ -7,8 +7,13 @@ import { CacheProvider, EmotionCache } from "@emotion/react";
 import theme from "../styles/theme";
 import createEmotionCache from "../libs/createEmotionCache";
 import Layout from "@/components/Layout";
-import changeRouteGtag from "../../utils/changeRouteGtag";
 import { useRouter } from "next/router";
+
+declare global {
+  interface Window {
+    gtag: any;
+  }
+}
 
 // Client-side cache, shared for the whole session of the user in the browser.
 const clientSideEmotionCache = createEmotionCache();
@@ -24,7 +29,9 @@ export default function MyApp(props: MyAppProps) {
 
   /* google analytics */
   const handleRouteChange = (url: string) => {
-    changeRouteGtag(url);
+    window.gtag("config", process.env.NEXT_PUBLIC_GA_ID, {
+      page_path: url,
+    });
   };
 
   useEffect(() => {

@@ -18,9 +18,6 @@ import {
 } from "@mui/material";
 import { doHyeon } from "../../../styles/theme";
 import Head from "next/head";
-import { useRouter } from "next/router";
-import changeRouteGtag from "../../../../utils/changeRouteGtag";
-import { useEffect } from "react";
 
 const Wrapper = styled.div`
   padding: 20px;
@@ -76,20 +73,6 @@ const Wrapper = styled.div`
 export default function Index({ posts }: any) {
   // client 측에서 post 역순으로 정렬
   const reversedPosts = posts.slice().reverse();
-
-  const router = useRouter();
-
-  /* google analytics */
-  const handleRouteChange = (url: string) => {
-    changeRouteGtag(url);
-  };
-
-  useEffect(() => {
-    router.events.on("routeChangeComplete", handleRouteChange);
-    return () => {
-      router.events.off("routeChangeComplete", handleRouteChange);
-    };
-  }, []);
 
   return (
     <>

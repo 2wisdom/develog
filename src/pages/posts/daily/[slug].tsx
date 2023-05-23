@@ -14,9 +14,6 @@ import {
 import { doHyeon } from "../../../styles/theme";
 import { Typography } from "@mui/material";
 import styled from "@emotion/styled";
-import { useRouter } from "next/router";
-import changeRouteGtag from "../../../../utils/changeRouteGtag";
-import { useEffect } from "react";
 
 const Wrapper = styled.div`
   padding: 20px;
@@ -95,20 +92,6 @@ const components = {
 
 export default function PostPage({ source, frontMatter }: any) {
   console.log("frontMatter", frontMatter);
-
-  const router = useRouter();
-
-  /* google analytics */
-  const handleRouteChange = (url: string) => {
-    changeRouteGtag(url);
-  };
-
-  useEffect(() => {
-    router.events.on("routeChangeComplete", handleRouteChange);
-    return () => {
-      router.events.off("routeChangeComplete", handleRouteChange);
-    };
-  }, []);
 
   return (
     <>
