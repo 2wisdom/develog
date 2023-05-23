@@ -2,10 +2,7 @@ import fs from "fs";
 import matter from "gray-matter";
 import Link from "next/link";
 import path from "path";
-import {
-  postFilePathsDaily,
-  POSTS_PATH_DAILY,
-} from "../../../../utils/mdxUtils";
+import { postFilePathsDaily, POSTS_PATH_DAILY } from "../../../utils/mdxUtils";
 import styled from "@emotion/styled";
 import Image from "next/image";
 import {

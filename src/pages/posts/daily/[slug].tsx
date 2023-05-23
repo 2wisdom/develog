@@ -7,10 +7,7 @@ import Head from "next/head";
 import Link from "next/link";
 import path from "path";
 import CustomLink from "@/components/CustomLink";
-import {
-  postFilePathsDaily,
-  POSTS_PATH_DAILY,
-} from "../../../../utils/mdxUtils";
+import { postFilePathsDaily, POSTS_PATH_DAILY } from "../../../utils/mdxUtils";
 import { doHyeon } from "../../../styles/theme";
 import { Typography } from "@mui/material";
 import styled from "@emotion/styled";

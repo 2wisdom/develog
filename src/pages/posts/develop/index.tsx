@@ -5,7 +5,7 @@ import path from "path";
 import {
   postFilePathsDevelop,
   POSTS_PATH_DEVELOP,
-} from "../../../../utils/mdxUtils";
+} from "../../../utils/mdxUtils";
 import styled from "@emotion/styled";
 import Image from "next/image";
 import {

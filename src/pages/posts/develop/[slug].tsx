@@ -10,7 +10,7 @@ import CustomLink from "@/components/CustomLink";
 import {
   postFilePathsDevelop,
   POSTS_PATH_DEVELOP,
-} from "../../../../utils/mdxUtils";
+} from "../../../utils/mdxUtils";
 import { doHyeon } from "../../../styles/theme";
 import { Typography } from "@mui/material";
 import styled from "@emotion/styled";
